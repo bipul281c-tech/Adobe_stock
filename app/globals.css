@@ -106,26 +106,36 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-weight: 450;
-    /* Slightly bolder base weight for better visibility */
+    font-weight: 500;
+    color: white !important;
   }
 
-  /* Make headings bolder and crisper */
+  /* Make ALL text crisp white and bold */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.01em;
+    color: white !important;
   }
 
   /* Improve label and small text visibility */
   label,
   .text-xs,
-  .text-sm {
-    font-weight: 500;
+  .text-sm,
+  p,
+  span,
+  div {
+    font-weight: 600;
+  }
+
+  /* Force all text elements to be white */
+  .text-foreground,
+  .text-muted-foreground {
+    color: rgba(255, 255, 255, 0.95) !important;
   }
 }
 

@@ -14,7 +14,16 @@ export function UploadZone() {
     (files: FileList | null) => {
       if (!files) return
 
-      const imageFiles = Array.from(files).filter((file) => file.type.startsWith("image/"))
+      // Check both MIME type and file extension for better mobile compatibility
+      // On iOS and some mobile browsers, file.type may be empty or incorrect
+      const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.heic', '.heif']
+      const imageFiles = Array.from(files).filter((file) => {
+        const hasImageType = file.type.startsWith("image/")
+        const hasImageExtension = imageExtensions.some(ext =>
+          file.name.toLowerCase().endsWith(ext)
+        )
+        return hasImageType || hasImageExtension
+      })
 
       const newItems: QueueItem[] = imageFiles.map((file) => ({
         id: crypto.randomUUID(),
